@@ -41,7 +41,8 @@ class Craftsman_Migration extends \CI_Migration
         			'type' => 'VARCHAR',
         			'first' => TRUE,
         			'constraint' => '100',
-        			'null' => FALSE
+        			'null' => FALSE,
+        			'default' => $this->_module_name
         		)
 			);
 			$this->dbforge->add_column($this->_migration_table, $fields);
@@ -177,7 +178,7 @@ class Craftsman_Migration extends \CI_Migration
 		else
 		{
 			$insert_query = $this->db->insert_string($this->_migration_table, $data);
-			$insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO', $insert_query);
+// 			$insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO', $insert_query);
 
 			$this->db->query($insert_query);
 		}
